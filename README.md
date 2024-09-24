@@ -24,6 +24,11 @@ An example script is provided which shows how to use the package. It calculates 
 * 3 - Elongated, centrally over-dense,
 * 4 - Elongated, centrally under-dense.
 
+The J plot classification referes to the following shapes:
+* 0 - Bubbles
+* 1 - Filaments
+* 2 - Cores
+
 ## Acknowledgements 
 This code was produced with the support of the Ministry of Science and Technology (MoST) in Taiwan through grant MoST 108-2112-M-001-004-MY2
 ## Contact
