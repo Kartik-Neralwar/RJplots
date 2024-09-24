@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 ### The following are outward facing functions which may be called
 
 ### The main function of the package, returns the RJ-values of a 2D image (2d-array) as well as the classification of the structure.
+
+
+
+
 def get_rj(image):
 
     J1,J2,com,theta = moments(image)
@@ -16,6 +20,37 @@ def get_rj(image):
     cla = classification(RJ1,RJ2)
 
     return RJ1,RJ2,cla
+
+
+### get_class_j_rj and J_class functions are added by Kartik Neralwar. These give the j plot class and the rj plot class for a structure
+def get_class_j_rj(image):
+
+    J1,J2,com,theta = moments(image)
+
+    RJ1 = (J1 - J2)/np.sqrt(2)
+    RJ2 = (J1 + J2)/np.sqrt(2)
+    RJ2 = RJ2/(-RJ1 + np.sqrt(2))
+
+    cla = classification(RJ1,RJ2)
+    J_cla = J_class(J1, J2)
+    return J_cla, cla
+
+### J plot class as defined in Neralwar + 2022
+### 0 - Bubble
+### 1 - Filament
+### 2 - Core
+def J_class(J1, J2):
+    if(J1<0 and J2<0):
+        struc_1 = 0
+    if(J1>0 and J2<0):
+        struc_1 = 1
+    if(J1>0 and J2>0):
+        struc_1 = 2
+    else:
+        struc_1 = 3
+    return struc_1
+
+
 
 ### Uses the classification scheme described in the accompanying paper. 
 ### 1 - Quasi-circular, centrally over-dense
